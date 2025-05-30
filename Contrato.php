@@ -7,6 +7,7 @@ class Contrato {
     private $costo;
     private $renovable;
     private $ref_cliente;   
+    private $codigo;
 
     public function __construct() {
 

@@ -82,7 +82,22 @@ class EmpresaCable {
     }
 
     public function pagarContrato($codigoContrato) {
-        
+        $contratos = $getContratos_planes();
+        $importe_final = 0;
+        $bandera = false;
+        $i = 0;
+        $canContratos = count($contratos);
+        while ($i<$canContratos && !$bandera) {
+            $unContrato = $contratos[$i];
+            $codigo = $unContrato->getCodigo();
+            if ($codigo == $codigoContrato) {
+                $unContrato->actualizarEstadoContrato();
+                $importe_final = $unContrato->calcularImporte();
+                $bandera = true;
+            }
+            $i++;
+        }
+        return $importe_final;
     }
 }
 ?>
